@@ -33,7 +33,7 @@ object hiveTableCreation extends SparkJob{
     val rowRDD = data.map(d => Row.fromSeq(d.toSeq))
     val df = sqlContext.createDataFrame(rowRDD, schema)
 
-    df.saveAsTable(jobConfig.getString("fileName").split(".")(0))
+    df.saveAsTable(jobConfig.getString("fileName").split("\\.")(0))
   }
 
   override def validate(sc: hiveTableCreation.C, config: Config): SparkJobValidation = {
